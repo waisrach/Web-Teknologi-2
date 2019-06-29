@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.top')
 
 @section('content')
 <div class="container">
@@ -6,7 +6,7 @@
 		<div class="col">
 			<h2>List Order</h2>
 			<div>
-				<a href="{{ route('admin.products.create')}}" class="btn-btn primary">Tambah Produk</a>
+				<a href="{{ route('admin.products.create')}}" class="btn btn-primary">Tambah Orderan</a>
 			</div>
 			<br/>
 			<div class="table-responsive">
@@ -29,7 +29,7 @@
 							<td>{{$order['zip_code'] }}</td>
 							<td>{{$order['shipping_address'] }}</td>
 							<td>
-								<a href="{{ route('admin.orders.show',['id' => $order['id']]) }}">Lihat
+								<a href="{{ route('admin.orders.show',['id' => $order['id']]) }}"  class="btn btn-info">Detail
                                 </a>
 							</td>
 						</tr>

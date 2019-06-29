@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ProductReview;
 use App\Models\Images;
+use Auth;
 use Image;
 
 class ProductController extends Controller
@@ -17,7 +18,8 @@ class ProductController extends Controller
      */
     public function __construct()
     {
-
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->model = new Product;
     }
     public function index(Request $request)
     {
@@ -49,7 +51,19 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate(request(),[
+            'rating' => 'required',
+            'description' => 'required',
+        ]);
+  
+        $rating = new ProductReview();
+        $rating->product_id = $request->post('product_id');
+        $rating->user_id = Auth::user()->id;
+        $rating->rating = $request->post('rating');
+        $rating->description = $request->post('description');
+        $rating->save();
+  
+        return redirect('/products/{id}')->with('success', 'Produk berhasil di simpan');
     }
 
     /**
@@ -60,21 +74,15 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::find($id);
-         if($product){
-             return view('products.show', compact('product'));
+        $product = Product::find($id );
+        $rating = ProductReview::rating($id);
+        $reviews = ProductReview::where('product_id', $id)->get();
+        if($product){
+            return view('products.show', compact('product', 'images', 'reviews', 'rating'));
          } else {
              return redirect('/products')->with('errors', 'produk tidak ditemukan');
          }
 
-        // $data['title'] = "Detail Product";
-        // $data['menu'] = "Products";
-        // $data['product'] = \App\Models\Product::find($id);
-        // $data['images'] = json_decode($data['product']->image_url);
-        // $data['review'] = \App\Models\ProductReview::where('product_id', $id)->orderBy('id','D')->get();
-        // $data['avgRating'] = ProductReview::rating($id);
-
-        // return view('show', $this->prefix($data));
     }
 
     public function image($imageName)

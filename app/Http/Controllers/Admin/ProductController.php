@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Images;
+use App\Category;
 use Auth;
 use Image;
 use DB;
@@ -40,7 +41,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.products.create');
+        $categories = Category::all();
+        return view('admin.products.create', compact('categories'));
     }
 
     /**
@@ -82,6 +84,14 @@ class ProductController extends Controller
         $product->user_id=Auth::user()->id;
         $product->name=$request->post('name');
         $product->price=$request->post('price');
+        if($request->filled('category'))
+        {
+            $product->category_id = $request->post('category');
+        }
+        else
+        {
+            $product->category_id = 0;
+        }
         $product->description=$request->post('description');
         $product->image_url= $newName;
         $product->save();
@@ -112,7 +122,8 @@ class ProductController extends Controller
     {
         //fungsi edit untuk mengambil data ecommerce sesuai id yang dipilih
         $products=Product::find($id);
-        return view('admin.products.edit',compact('products'));
+        $categories = Category::all();
+        return view('admin.products.edit',compact('products','categories'));
     }
 
     /**
@@ -136,6 +147,14 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product->name = $request->get('name');
         $product->price = $request->get('price');
+        if($request->filled('category'))
+        {
+            $product->category_id = $request->post('category');
+        }
+        else
+        {
+            $product->category_id = 0;
+        }
         $product->description = $request->post('description');
         $product->save();
 

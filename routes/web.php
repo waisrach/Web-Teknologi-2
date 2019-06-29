@@ -32,6 +32,7 @@ Route::get('post','PostController@index');
 
 Route::get('products','ProductController@index')->name('products.index');
 Route::get('products/{id}', 'ProductController@show')->name('products.show');
+Route::post('products', 'ProductController@store')->name('products.store');
 Route::get('products/image/{imageName}', 'ProductController@image')->name('products.image');
 
 Route::get('/carts', 'CartController@index')->name('carts.index');

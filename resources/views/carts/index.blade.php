@@ -1,8 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.top')
 
 @section('content')
 <div class="container">
-
+<br>
+<div class="panel panel-default">
+        <div class="panel-heading">
+            <b>Cart</b>
+        </div>
+        <div class="panel-body">
     <table id="cart" class="table table-hover table-condensed">
         <thead>
         <tr>
@@ -10,7 +15,7 @@
             <th style="width:10%">Price</th>
             <th style="width:8%">Quantity</th>
             <th style="width:22%" class="text-center">Subtotal</th>
-            <th style="width:10%"></th>
+            <th style="width:10%">Option</th>
         </tr>
         </thead>
         <tbody>
@@ -31,13 +36,13 @@
                     </div>
                 </div>
             </td>
-        <td data-th="Price">${{ $product['price'] }}</td>
+        <td data-th="Price">Rp.{{ $product['price'] }}</td>
         <td data-th="Quantity">
             <input type="number" value="{{ $product['quantity'] }}" class="form-control quantity" />
         </td>
-        <td data-th="Subtotal" class="text-center">${{ $product['price'] * $product['quantity'] }}</td>
-        <td class="actions" data-th="">
-            <button class="btn btn-info btn-sm update-cart" data-id="{{ $id }}">Update</button>
+        <td data-th="Subtotal" class="text-center">Rp.{{ $product['price'] * $product['quantity'] }}</td>
+        <td class="action">
+            <button class="btn btn-warning btn-sm mt-2 update-cart" data-id="{{ $id }}">Update</button>
             <button class="btn btn-danger btn-sm mt-2 remove-from-cart" data-id="{{ $id }}">Remove</button>
         </td>
         </tr>
@@ -50,22 +55,24 @@
         </tr>
         <tr>
             <td>
-            <a href="{{ url('/') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i>Lanjutkan Belanja</a>
-            <a href="{{ route('admin.orders.create') }}" class="btn btn-primary"><i class="fa fa-angel-left">Lanjut ke Pembayaran</i></a>
+            <br>
+            <a href="{{ url('/products') }}" class="btn btn-primary"><i class="fa fa-angle-left"></i> Lanjutkan Belanja</a>
+            <a href="{{ route('admin.orders.create') }}" class="btn btn-primary">Bayar <i class="fa fa-angle-right"></i></a>
             </td>
             <td colspan="2" class="hidden-xs"></td>
-            <td class="hidden-xs text-center"><strong>Total ${{ $total }}</strong></td>
+            <td class="hidden-xs text-center"><strong>Total Rp.{{ $total }}</strong></td>
         </tr>
         </tfoot>
     </table>
-
+    </div>
+    </div>
 </div>
 
 <!-- Jquery -->
 <script> src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"</script>
 <script type="text/javascript">
-    $(document).ready(function(){
-        $(".update-cart").click(function (e){
+    $(document).ready(function() {
+        $(".update-cart").click(function (e) {
             e.preventDefault();
             console.log('aaaa');
             var ele = $(this);

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.top')
 
 @section('content')
 <div class="container">
@@ -28,7 +28,7 @@
                         <td>{{ $products['created_at']}}</td>
                     </tr>
             </div>
-                <a href="{{route('admin.products.index')}}" class="btn btn-primary">Kembali</a>       
+                <a href="{{route('admin.products.index')}}" class="btn btn-primary">Back</a>       
         </div>
     </div>
 </div>

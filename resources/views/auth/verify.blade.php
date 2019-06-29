@@ -1,12 +1,16 @@
-@extends('layouts.app')
+@extends('layouts.top')
 
 @section('content')
 <div class="container">
+<br>
+<div class="panel panel-default">
+        <div class="panel-heading">
+            <b>Verify your Email Address</b>
+        </div>
+        <div class="panel-body">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('Verify Your Email Address') }}</div>
-
                 <div class="card-body">
                     @if (session('resent'))
                         <div class="alert alert-success" role="alert">
@@ -19,6 +23,8 @@
                 </div>
             </div>
         </div>
+    </div>
+    </div>
     </div>
 </div>
 @endsection

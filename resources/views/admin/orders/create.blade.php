@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.top')
 
 @section('content')
 
 <div class="container">
 	<div class="row justify-content-center">
 		<div class="col">
-			<h2>Menambahkan Alamat</h2>
+			<h2>Tambah Alamat</h2>
 
 			<br />
 			@if(count($errors))
@@ -31,7 +31,7 @@
 					<label>Kode Pos</label>
 					<input type="number" name="zip_code" class="form-control" placeholder="Kode Pos">
 				</div>
-				<button type="submit" class="btn btn-primary">Simpan</button>
+				<button type="submit" class="btn btn-danger">Simpan</button>
 				</form>
 			</div>
 		</div>

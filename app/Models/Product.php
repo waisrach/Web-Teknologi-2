@@ -26,18 +26,29 @@ public function productReviews()
                     ) AS oi ON oi.product_id = p.id
                     ORDER BY oi.quantity DESC;";
 
-        } else if ($order_by == 'terbaik'){
+        } else if ($order_by == 'Terbaik'){
             $query = "SELECT * FROM products ORDER BY created_at DESC";
         
-        }else if ($order_by == 'termurah') {
+        }else if ($order_by == 'Termurah') {
             $query = "SELECT * FROM products ORDER BY price ASC";
 
-        } else if ($order_by == 'termahal') {
+        } else if ($order_by == 'Termahal') {
             $query = "SELECT * FROM products ORDER BY price DESC";
 
-        }else if ($order_by == 'terbaru') {
+        }else if ($order_by == 'Terbaru') {
             $query = " SELECT * FROM products ORDER BY created_at DESC";
         }
+
+        else if ($order_by == 'Smartphone & Gadget') {
+            $query = " SELECT * FROM products WHERE category_id = 1 ORDER BY created_at DESC";
+        }
+        else if ($order_by == 'Computer Peripheral') {
+            $query = " SELECT * FROM products WHERE category_id = 2 ORDER BY created_at DESC";
+        }
+        else if ($order_by == 'Uncategorized') {
+            $query = " SELECT * FROM products WHERE category_id = 0 ORDER BY created_at DESC";
+        }
+
 
         return DB::select($query);
     }

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.top')
 
 @section('content')
 <div class="container">
@@ -33,12 +33,21 @@
                     <label>Deskripsi</label>
                     <textarea name="description" class="form-control" rows="3" placeholder="Deskripsi"></textarea>
                 </div>
+                <div class="from-group mt-4">
+                    <label for="category">Kategori</label>
+                    <select name="category" class="form-control">
+                        <option disabled selected>Choose category...</option>
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+</div>
                 <div class="form-group increment">
 					<label>Image</label>
 					<input required type="file" name="image_url" class="form-control">
 				</div>
-                <button type="submit" class="btn btn-primary">Submit</button>
                 <a href="{{ route('admin.products.index') }}" class="btn btn-primary">Back</a>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </form>        
         </div>
     </div>

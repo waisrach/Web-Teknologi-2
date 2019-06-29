@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.top')
 
 @section('content')
 <div class="container">
@@ -6,6 +6,8 @@
 		<div class="col">
 			<div class="row">
 				<div class="col">
+					<h2>Detail Order</h2>
+
 					<h2>
 						<span class="badge badge-primary">Alamat Pengiriman</span>
 					</h2>
@@ -82,6 +84,7 @@
 				</tbody>
 			</table>
 		</div>
+		<a href="{{ route('admin.orders.index') }}" class="btn btn-warning">Back</a>
 	</div>
 </div>
 @endsection

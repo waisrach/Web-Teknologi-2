@@ -3,7 +3,7 @@
 <head>
 <style>
 .checked {
-  color: orange;
+  color: blue;
 }
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -14,7 +14,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Wais Tech') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -26,13 +26,14 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
+   
 </head>
-<body>
+<body class="hold-transition skin-blue layout-top-nav">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('Wais Tech', 'Wais Tech') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -43,7 +44,7 @@
                     <ul class="navbar-nav mr-auto">
                         @if (Auth::check())
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                                <a class="nav-link dropdown-toggle fa fa-tags" href="#" id="navbarDropdown"
                                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Product
                                 </a>
@@ -57,7 +58,7 @@
                         
                         <!-- carts -->
                             <li class="nav-item">
-                                <a href="{{ route('carts.index') }}" class="btn btn-primary btn-block">
+                                <a href="{{ route('carts.index') }}">
                                 @if (session('cart'))
                                     <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart <span class="badge badge-pill badge-danger">{{ count(session('cart')) }}</span>
                                 @else
@@ -68,13 +69,13 @@
                         <!-- carts -->
 
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                                <a class="nav-link dropdown-toggle fa fa-archive" aria-hidden="true" href="#" id="navbarDropdown"
                                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Order
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('admin.orders.index')
-                                }}">list</a>
+                                }}">List</a>
                                 </div>
                             </li>
                         @endif
@@ -85,12 +86,12 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <li class="nav-item " >
+                           <a class="nav-link" aria-hidden="true" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <li class="nav-item " >
+                                    <a class="nav-link" aria-hidden="true" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -100,10 +101,8 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                    <a class="dropdown-item" aria-hidden="true" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
